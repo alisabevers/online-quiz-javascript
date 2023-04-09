@@ -14,9 +14,10 @@ function setTime() {
     }, 1000);
 }
 
+setTime();
+
 // function endQuiz () {
 //     timeEl.textContent = " ";
 
 // }
 
-setTime();
