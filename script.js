@@ -23,7 +23,7 @@ var choice2 = document.querySelector("#choice2");
 var choice3 = document.querySelector("#choice3");
 var choice4 = document.querySelector("#choice4")
 var currentQuestion = "";
-var currentChoices = "";
+var currentChoice = "";
 var questions = [
     {
         question: "When is Harry Potter's birthday?",
@@ -47,28 +47,57 @@ var questions = [
     }
 ];
 
-function showQuestions(event) {
-    // var lastQuestion = currentQuestion === questions.length - 1;
+// event listeners for buttons that the user clicked
+choice1.addEventListener('click', function(event) {
+    currentChoice = event.target.textContent;
+    console.log(currentChoice);
+});
 
-    for(let i=0; i < questions.length; i++) {
+choice2.addEventListener('click', function(event) {
+    currentChoice = event.target.textContent;
+    console.log(currentChoice);
+});
+
+choice3.addEventListener('click', function(event) {
+    currentChoice = event.target.textContent;
+    console.log(currentChoice);
+});
+
+choice4.addEventListener('click', function(event) {
+    currentChoice = event.target.textContent;
+    console.log(currentChoice);
+});
+
+// function to present the question
+async function showQuestions() {
+    var i = 0;
+    do{
         currentQuestion = questions[i].question;
         questionsEl.textContent = currentQuestion;
         choice1.textContent = questions[i].choices[0];
-        choice2.textContent = questions[i].choices[1];
-        choice3.textContent = questions[i].choices[2];
+
+        choice1.value = (questions[i].answer === questions[i].choices[0]) ? 1 : 0;
+        choice2.textContent = (questions[i].choices[1]);
+        choice2.value = (questions[i].answer === questions[i].choices[1]) ? 1 : 0;
+        choice3.textContent = (questions[i].choices[2]);
+        choice3.value = (questions[i].answer === questions[i].choices[2]) ? 1 : 0;
         choice4.textContent = questions[i].choices[3];
-        event.stopPropagation();
-
-        // var userSelection = questions[i].choices[j];
-        var validate = document.querySelector(".rightOrWrong");
-        validate.addEventListener("click", function() {
-            if (userSelection === questions[i].answer) {
-                document.querySelector(".rightOrWrong").textContent = "Correct!";
-            } else {
-                document.querySelector(".rightOrWrong").textContent = "Wrong!";
-            }
-        })
+        choice4.value = (questions[i].answer === questions[i].choices[3]) ? 1 : 0;
+        if(currentChoice != "") i++;
+        
     }
-};
+    while (i < questions.length && currentChoice != "")
+}; 
+showQuestions();
 
-showQuestions(questions);
+
+ // var userSelection = questions[i].choices[j];
+
+//  var validation = document.querySelector(".validation");
+//  validation.addEventListener("click", function() {
+//      if (userSelection === questions[i].answer) {
+//          validation.textContent = "Correct!";
+//      } else {
+//          validation.textContent = "Wrong!";
+//      }
+//  })
