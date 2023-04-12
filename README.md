@@ -2,7 +2,7 @@
 
 ## Description
 
-Creating this quiz was my 5th assignment from my GT Bootcamp course. I was not provided with any starter code, and I was given a mockup gif to replicate from scratch. The quiz had specific requirements, which I ensured to include in the code:
+Creating this quiz was my 4th assignment from my GT Bootcamp course. I was not provided with any starter code, and I was given a mockup gif to replicate from scratch. The quiz had specific requirements, which I ensured to include in the code:
 
 * Set a timer to start upon starting the quiz
 * Iterate the questions to appear on the screen, one at a time
