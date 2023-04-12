@@ -73,3 +73,8 @@ button:hover {
     font-weight: normal;
     font-style: italic;
 }
+
+/* div that displays when the quiz is done */
+#allDone {
+    visibility: hidden;
+}

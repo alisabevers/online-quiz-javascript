@@ -1,3 +1,7 @@
+var quizContainer = document.querySelector(".quiz");
+var allDoneContainer = document.querySelector("#allDone");
+
+var score = document.querySelector("#userScore");
 var questionsEl = document.querySelector(".quizQuestions");
 var choice1 = document.querySelector("#choice1");
 var choice2 = document.querySelector("#choice2");
@@ -24,22 +28,6 @@ var nextQuestion = questionsIt.next();
 var nextChoice = choicesIt.next();
 var nextAnswer = answersIt.next();
 
-// Function to set the timer to start upon load of the second HTML file
-var timeEl = document.querySelector(".time");
-var secondsLeft = 60;
-
-function setTime() {
-    var timerInterval = setInterval(function() {
-        secondsLeft--;
-        timeEl.textContent = "Time: " + secondsLeft;
-
-        if (secondsLeft === 0) {
-            clearInterval(timerInterval);
-            //something here to end the quiz. Your Score page which will = 0?
-        }
-    }, 1000);
-}
-
 // displays the text in the corresponding buttons and div upon load
 currentQuestion = nextQuestion.value;
 questionsEl.textContent = currentQuestion;
@@ -61,6 +49,28 @@ async function displayResult(currentChoice) {
     }
 }
 
+// sets the timer to start upon load of the second HTML file
+var timeEl = document.querySelector(".time");
+var secondsLeft = 60;
+
+// disables all functions on the quiz once done
+function endQuiz() {
+    [choice1.disabled, choice2.disabled, choice3.disabled, choice4.disabled] = [true, true, true, true];
+    clearInterval(timerInterval);
+    quizContainer.remove();
+    allDoneContainer.style.visibility = "visible";
+    score.textContent = "Your final score is " + secondsLeft + ".";
+}
+
+var timerInterval = setInterval(function() {
+    secondsLeft--;
+    timeEl.textContent = "Time: " + secondsLeft;
+    if (secondsLeft === 0) {
+        endQuiz();
+    }
+}, 1000);
+
+
 // event listeners for buttons that the user clicked
 choice1.addEventListener('click', function(event) {
     currentChoice = event.target.textContent;
@@ -75,7 +85,7 @@ choice1.addEventListener('click', function(event) {
             nextQuestion = questionsIt.next();
             nextChoice = choicesIt.next();
             (nextQuestion.done) ?
-            [choice1.disabled, choice2.disabled, choice3.disabled, choice4.disabled] = [true, true, true, true]
+            endQuiz()
             : 
             [questionsEl.textContent, choice1.textContent, choice2.textContent, choice3.textContent, choice4.textContent] = [nextQuestion.value, nextChoice.value[0], nextChoice.value[1], nextChoice.value[2], nextChoice.value[3]];
         }
@@ -95,8 +105,8 @@ choice2.addEventListener('click', function(event) {
             nextQuestion = questionsIt.next();
             nextChoice = choicesIt.next();
             (nextQuestion.done) ?
-            [choice1.disabled, choice2.disabled, choice3.disabled, choice4.disabled] = [true, true, true, true]
-            :
+            endQuiz()
+            : 
             [questionsEl.textContent, choice1.textContent, choice2.textContent, choice3.textContent, choice4.textContent] = [nextQuestion.value, nextChoice.value[0], nextChoice.value[1], nextChoice.value[2], nextChoice.value[3]];
         }
     }, 1000);
@@ -115,8 +125,8 @@ choice3.addEventListener('click', function(event) {
             nextQuestion = questionsIt.next();
             nextChoice = choicesIt.next();
             (nextQuestion.done) ?
-            [choice1.disabled, choice2.disabled, choice3.disabled, choice4.disabled] = [true, true, true, true]
-            :
+            endQuiz()
+            : 
             [questionsEl.textContent, choice1.textContent, choice2.textContent, choice3.textContent, choice4.textContent] = [nextQuestion.value, nextChoice.value[0], nextChoice.value[1], nextChoice.value[2], nextChoice.value[3]];
         }
     }, 1000);
@@ -135,11 +145,9 @@ choice4.addEventListener('click', function(event) {
             nextQuestion = questionsIt.next();
             nextChoice = choicesIt.next();
             (nextQuestion.done) ?
-            [choice1.disabled, choice2.disabled, choice3.disabled, choice4.disabled] = [true, true, true, true]
-            :
+            endQuiz()
+            : 
             [questionsEl.textContent, choice1.textContent, choice2.textContent, choice3.textContent, choice4.textContent] = [nextQuestion.value, nextChoice.value[0], nextChoice.value[1], nextChoice.value[2], nextChoice.value[3]];
         }
     }, 1000);
 });
-
-setTime();
