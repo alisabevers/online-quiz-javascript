@@ -10,3 +10,5 @@ Creating this quiz was my 5th assignment from my GT Bootcamp course. I was not p
 * Deduct 10 seconds from the timer, if the user answered incorrectly
 * Upon completion of the quiz, save the score and display it for the user to see, and input their initials
 * Save the score and initials of the user to Local Storage, so that it's saved on the browser
+
+Click on this [link](https://alisabevers.github.io/online-quiz-javascript/) to see the webpage, live!
