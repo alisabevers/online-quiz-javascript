@@ -4,6 +4,9 @@ body {
     text-align: center;
     margin: 0 150px 0;
     font-size: 20px;
+}
+
+#quizDescription {
     font-weight: bold;
 }
 
@@ -11,6 +14,7 @@ body {
     font-size: 20px;
     display: flex;
     justify-content: space-between;
+    font-weight: bold;
 }
 
 .container, 
@@ -49,6 +53,7 @@ a#start {
     text-align: left;
     font-size: 22px;
     margin-bottom: 30px;
+    font-weight: bold;
 }
 
 button {
@@ -77,4 +82,12 @@ button:hover {
 /* div that displays when the quiz is done */
 #allDone {
     visibility: hidden;
+}
+
+#userScore {
+    font-weight: bold;
+}
+
+#scoreFormInstructions {
+    font-size: 15px;
 }
